@@ -1,0 +1,76 @@
+<!-- search products -->
+
+<!-- dispay products    -->
+<div class="row justify-content-center">
+    @for (product of filteredProducts; track product.id) {
+    <div class="col-lg-3" style="display: flex;justify-content: center;">
+        <div class="card lg-3 " [ngStyle]="{'background-color': product.quantity === 1 ? 'yellow' : ''}"
+            style="max-width: 300px;">
+            <div class="row g-0 justify-content-center align-items-center">
+                <img [src]="product.imageUrl" (click)="goToDetails(product.id)"
+                    class="img-fluid card-img-top rounded-start" ImgStyle>
+                <div class="card-body justify-content-center align-items-center "
+                    style="display: flex; flex-direction: column;">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text"><small class="text-muted">@switch (product.categoryID) {
+                            @case (101) {
+                            Chair 1
+                            }
+                            @case (103) {
+                            Chair 3
+                            }
+                            @case (102) {
+                            Chair 2
+                            }
+                            @default {
+                            Chair default
+                            }
+                            }</small></p>
+                    <p class="card-text"><small class="text-muted">Price: {{ product.price }} $</small></p>
+
+                    <button class="btn btn-primary " [disabled]="product.quantity ==0" (click)="addToCart(product)">Add
+                        to Cart</button>
+                    <button class="btn btn-danger " (click)="deleteProduct(product.id)">Delete product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
+<!-- cart -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cart">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Total Price</strong></td>
+            <td><strong>{{cart.length}}</strong></td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+<!-- custom pipe -->
+<p>{{ credit | calcCredit }} </p>
+
+
+
+
+
+

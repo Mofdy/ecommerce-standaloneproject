@@ -1,0 +1,67 @@
+<div class="container">
+    <h2 class="mt-5">Register New User</h2>
+    <form #form="ngForm" (submit)="adduser()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text"[(ngModel)]="user.username" name="username" class="form-control" id="name" 
+        required placeholder="Enter your name"
+        required minlength="5" #firstnameVar="ngModel"
+        [ngClass]="{'is-invalid':firstnameVar.dirty && (!firstnameVar.valid),'is-valid':firstnameVar.valid}">
+
+
+        <span class="invalid-feedback">
+            @if(firstnameVar.errors?.['required']){
+            <span>First name is required</span>
+            }
+            @if(firstnameVar.errors?.['minlength']){
+
+            <span>First name must be at least 5 characters</span>}
+
+          </span>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="LastName">Last Name</label>
+        <input type="text" class="form-control"name="lastName" [(ngModel)]="user.lastname" id="LastName"
+         required placeholder="Enter your password"
+         required minlength="5" #lastnameVar="ngModel"
+        [ngClass]="{'is-invalid':lastnameVar.dirty && (!lastnameVar.valid),'is-valid':lastnameVar.valid}">
+
+
+        <span class="invalid-feedback">
+            @if(lastnameVar.errors?.['required']){
+            <span>last name is required</span>
+            }
+            @if(lastnameVar.errors?.['minlength']){
+
+            <span>last name must be at least 5 characters</span>}
+
+          </span>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" name="email"[(ngModel)]="user.email" id="email"
+         required placeholder="Enter your email"
+         required ="@" #emailVar="ngModel"
+        [ngClass]="{'is-invalid':emailVar.dirty && (!emailVar.valid),'is-valid':emailVar.valid}">
+
+
+        <span class="invalid-feedback">
+            @if(emailVar.errors?.['required']){
+            <span>email is required</span>
+            }
+            @if(emailVar.errors?.['minlength']){
+
+            <span>email must have  </span>}
+
+          </span>
+      </div> 
+      <!-- password -->
+      <!-- <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+      </div> -->
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid" >Register</button>
+    </form>
+  </div>

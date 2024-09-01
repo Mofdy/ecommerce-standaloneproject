@@ -1,0 +1,28 @@
+<!-- <div>
+    <label for="category">Select Category:</label>
+    <select id="category" [(ngModel)]="selectedCategory">
+        <option *ngFor="let product of products " [value]="product.categoryID">{{ product.categoryID }}</option>
+    </select>
+</div>
+
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+    </tr>
+    <tr *ngFor="let product of filteredProducts">
+        <td>{{ product.name }}</td>
+        <td>{{ product.categoryID }}</td>
+    </tr>
+</table> -->
+<div class="row my-4">
+    <div class="col-sm-2">
+      <label for="" class="form-label">Filter By Name: </label>
+      
+    </div>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="filtername">
+        
+    </div>
+  </div>
+<app-products  [filterByNameInChild]="filtername" (newPrdIncart)="addProductInCart($event)"> </app-products>

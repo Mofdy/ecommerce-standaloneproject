@@ -1,0 +1,11 @@
+<div class="row justify-content-center ">
+    <img [src]="store1.logo" style="width: 300px; height: 300px;" alt="Description of the image">
+    <h2>Store name is {{store1.name}}</h2>
+
+    <button (click)="Buy()">Buy</button>
+
+    @if(IsPurshased){
+    <p>have purchased this item {{clientName}}.</p>
+    <img [src]="store1.logo" style="width: 300px; height: 300px; display: none;" alt="Description of the image">
+    }
+</div>
